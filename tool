@@ -4,8 +4,7 @@ okRoot=false
 okSystem=false 
 rootCheck(){ 
         if [ $(whoami) = "root" ] 
-        then 
-                echo "You are ROOT" 
+        then  
                 okRoot=true; 
         else    
 		echo "Please run this script with root account."           
@@ -140,6 +139,7 @@ echo "+-------------------------------------+"
 echo "| This is Server Administration Shell |"
 echo "+-------------------------------------+"
 
+echo "You are Root"
 checkSystem
 checkHost
 checkArchitecture
