@@ -2,6 +2,8 @@
 
 okRoot=false 
 okSystem=false 
+
+#function
 rootCheck(){ 
         if [ $(whoami) = "root" ] 
         then  
@@ -53,6 +55,11 @@ mysql() {
 		echo "Mariadb is installed already."
 	else
 		#yum install zabbox-server-mysql zabbix-agent zabbix-web-mysql expect -y
+		yum install mariadb mariadb-server -y
+		echo "Mariadb server is installing......"
+		systemctl start mariadb
+		systemctl enable mariadb
+		
 		read -p "Define MYSQL root user password: " mysqlrootpwd
 		SECURE_MYSQL=$(expect -c "
 
@@ -131,6 +138,8 @@ FIREWALL() {
          firewall-cmd --zone=public --add-port=10000/tcp --permanent
          firewall-cmd --reload
 }
+
+#Welcome my script.....
 
 rootCheck
 if [ $okRoot = true ]
